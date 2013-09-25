@@ -1,0 +1,29 @@
+D:\Projects\Vintage Garment Describer\Vintage Garment Describer\bin\Debug\Vintage Garment Describer.exe.config
+D:\Projects\Vintage Garment Describer\Vintage Garment Describer\obj\Debug\Vintage Garment Describer.csprojResolveAssemblyReference.cache
+D:\Projects\Vintage Garment Describer\Vintage Garment Describer\obj\Debug\MainWindow.baml
+D:\Projects\Vintage Garment Describer\Vintage Garment Describer\obj\Debug\MainWindow.g.cs
+D:\Projects\Vintage Garment Describer\Vintage Garment Describer\obj\Debug\App.g.cs
+D:\Projects\Vintage Garment Describer\Vintage Garment Describer\obj\Debug\Vintage Garment Describer_MarkupCompile.cache
+D:\Projects\Vintage Garment Describer\Vintage Garment Describer\obj\Debug\Vintage Garment Describer.g.resources
+D:\Projects\Vintage Garment Describer\Vintage Garment Describer\obj\Debug\Vintage_Garment_Describer.Properties.Resources.resources
+D:\Projects\Vintage Garment Describer\Vintage Garment Describer\obj\Debug\Vintage Garment Describer.csproj.GenerateResource.Cache
+D:\Projects\Vintage Garment Describer\Vintage Garment Describer\bin\Debug\Vintage Garment Describer.exe
+D:\Projects\Vintage Garment Describer\Vintage Garment Describer\bin\Debug\Vintage Garment Describer.pdb
+D:\Projects\Vintage Garment Describer\Vintage Garment Describer\obj\Debug\Vintage Garment Describer.exe
+D:\Projects\Vintage Garment Describer\Vintage Garment Describer\obj\Debug\Vintage Garment Describer.pdb
+D:\Projects\Vintage Garment Describer\bin\Debug\Vintage Garment Describer.exe.config
+D:\Projects\Vintage Garment Describer\obj\Debug\Vintage Garment Describer.exe
+D:\Projects\Vintage Garment Describer\obj\Debug\Vintage Garment Describer.pdb
+D:\Projects\Vintage Garment Describer\bin\Debug\Vintage Garment Describer.exe
+D:\Projects\Vintage Garment Describer\bin\Debug\Vintage Garment Describer.pdb
+D:\Projects\Vintage Garment Describer\obj\Debug\Vintage Garment Describer.csprojResolveAssemblyReference.cache
+D:\Projects\Vintage Garment Describer\obj\Debug\MainWindow.baml
+D:\Projects\Vintage Garment Describer\obj\Debug\MainWindow.g.cs
+D:\Projects\Vintage Garment Describer\obj\Debug\App.g.cs
+D:\Projects\Vintage Garment Describer\obj\Debug\Vintage Garment Describer_MarkupCompile.cache
+D:\Projects\Vintage Garment Describer\obj\Debug\Vintage Garment Describer.g.resources
+D:\Projects\Vintage Garment Describer\obj\Debug\Vintage_Garment_Describer.Properties.Resources.resources
+D:\Projects\Vintage Garment Describer\obj\Debug\Vintage Garment Describer.csproj.GenerateResource.Cache
+D:\Projects\Vintage Garment Describer\bin\Debug\Microsoft.Practices.Prism.dll
+D:\Projects\Vintage Garment Describer\obj\Debug\FolderOpenDlg\FolderBrowserDialog.baml
+D:\Projects\Vintage Garment Describer\obj\Debug\FolderOpenDlg\FolderBrowserDialog.g.cs
