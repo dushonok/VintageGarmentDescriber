@@ -60,7 +60,7 @@ namespace VintageGarmentDescriber
             loadImgCmd = (LoadImgCommand)((MainViewModel)DataContext).LoadImgCommand;
 
             ImageIdx = 0;
-            IsNewImage = false;
+            IsNextImage = false;
             GarmentDescIdx = -1;
 
             this.ImgFolder.Text = "D:\\Photos\\Processed\\SmallPhotos\\FF Online\\Clothes\\";
@@ -81,7 +81,8 @@ namespace VintageGarmentDescriber
             }
             set
             {
-                IsNewImage = imageIdx != value && value >= 0;
+                IsNextImage = imageIdx < value && value >= 0;
+                IsPrevImage = imageIdx > value && value >= 0;
 
                 imageIdx = value < 0 ? 0 : value;
 
@@ -94,7 +95,8 @@ namespace VintageGarmentDescriber
 
         public Int32 ImageCount;
 
-        public bool IsNewImage;
+        public bool IsNextImage;
+        public bool IsPrevImage;
 
         
         List<Grid> garmentUIGroups;
@@ -154,7 +156,7 @@ namespace VintageGarmentDescriber
             get { return garmentIdx; }
             set
             {
-                garmentIdx = value;
+                garmentIdx = value < 0 ? 0 : value;
                 
                 
             }
@@ -198,14 +200,23 @@ namespace VintageGarmentDescriber
         }
 
 
-        public void AddNewDescr()
+        public void AddNewDescr(String text)
         {
-            if (IsNewImage)
+            String type = text;
+            int lastIdxOfSpace = type.LastIndexOf(' ');
+            AddedProp.Text = text.Remove(lastIdxOfSpace, type.Length - lastIdxOfSpace);
+            
+            if (IsNextImage)
             {
                 ++this.GarmentIdx;
-                IsNewImage = false;
-            } 
-            
+                IsNextImage = false;
+            }
+            else if (IsPrevImage)
+            {
+                --this.GarmentIdx;
+                IsPrevImage = false;
+            }
+
             if (garments.Count < this.GarmentIdx + 1)
             {
                 garments.Add(new GarmentDescription());

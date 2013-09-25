@@ -276,11 +276,8 @@ namespace VintageGarmentDescriber
         public override void Execute(object parameter)
         {
             base.Execute(parameter);
-            
-            String type = btn.Content.ToString();
-            int lastIdxOfSpace = type.LastIndexOf(' ');
-            wnd.AddedProp.Text = btn.Content.ToString().Remove(lastIdxOfSpace, type.Length - lastIdxOfSpace);
-            wnd.AddNewDescr();
+
+            wnd.AddNewDescr(btn.Content.ToString());
         }
 
         #endregion
