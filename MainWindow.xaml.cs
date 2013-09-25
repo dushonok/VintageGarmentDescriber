@@ -60,7 +60,7 @@ namespace VintageGarmentDescriber
             loadImgCmd = (LoadImgCommand)((MainViewModel)DataContext).LoadImgCommand;
 
             ImageIdx = 0;
-            IsNewImage = true;
+            IsNewImage = false;
             GarmentDescIdx = -1;
 
             this.ImgFolder.Text = "D:\\Photos\\Processed\\SmallPhotos\\FF Online\\Clothes\\";
@@ -81,9 +81,9 @@ namespace VintageGarmentDescriber
             }
             set
             {
-                IsNewImage = imageIdx != value;
+                IsNewImage = imageIdx != value && value >= 0;
 
-                imageIdx = value;
+                imageIdx = value < 0 ? 0 : value;
 
                 LoadImgCommand cmd = new LoadImgCommand();
                 cmd.Execute(this);
@@ -113,12 +113,11 @@ namespace VintageGarmentDescriber
             {
                 if (garmentDescIdx > value)
                 {
-                    this.GarmentIdx = this.prevImageIdx;
+                    this.GarmentIdx = this.prevGarmentIdx;
                 }
                 else
                 {
-                    this.prevImageIdx = this.ImageIdx;
-                    this.GarmentIdx = 0;
+                    this.prevGarmentIdx = this.GarmentIdx;
                 }
 
                 garmentDescIdx = value;
@@ -148,7 +147,7 @@ namespace VintageGarmentDescriber
             }
         }
 
-        Int32 prevImageIdx;
+        Int32 prevGarmentIdx;
         Int32 garmentIdx;
         public Int32 GarmentIdx
         {
@@ -201,6 +200,12 @@ namespace VintageGarmentDescriber
 
         public void AddNewDescr()
         {
+            if (IsNewImage)
+            {
+                ++this.GarmentIdx;
+                IsNewImage = false;
+            } 
+            
             if (garments.Count < this.GarmentIdx + 1)
             {
                 garments.Add(new GarmentDescription());
@@ -209,11 +214,7 @@ namespace VintageGarmentDescriber
             garmentDesc.Add(GarmentDescIdx, this.AddedProp.Text);
             Save(System.IO.Path.Combine(this.ImgFolder.Text, this.outputFileName));
 
-            if (IsNewImage)
-            {
-                ++this.GarmentIdx;
-                IsNewImage = false;
-            }
+            
         }
 
 
