@@ -11,24 +11,39 @@ namespace VintageGarmentDescriber
     {
         public MainViewModel()
         {
-            LeftCommand = new LeftCommand();
-            RightCommand = new RightCommand();
+            PrevGarmentTypeCommand = new PrevGarmentTypeCommand();
+            NextGarmentTypeCommand = new NextGarmentTypeCommand();
+            PrevImageCommand = new PrevImageCommand();
+            NextImageCommand = new NextImageCommand();
             OpenFolderCommand = new OpenFolderCommand();
             LoadImgCommand = new LoadImgCommand();
             GarmentTypeCommand = new GarmentTypeCommand();
         }
 
-        public LeftCommand LeftCommand
+        public PrevGarmentTypeCommand PrevGarmentTypeCommand
         {
             get;
             internal set;
         }
 
-        public RightCommand RightCommand
+        public NextGarmentTypeCommand NextGarmentTypeCommand
         {
             get;
             internal set;
         }
+
+        public PrevImageCommand PrevImageCommand
+        {
+            get;
+            internal set;
+        }
+
+        public NextImageCommand NextImageCommand
+        {
+            get;
+            internal set;
+        }
+
 
         public OpenFolderCommand OpenFolderCommand
         {

@@ -84,6 +84,9 @@ namespace VintageGarmentDescriber
                 IsNewImage = imageIdx != value;
 
                 imageIdx = value;
+
+                LoadImgCommand cmd = new LoadImgCommand();
+                cmd.Execute(this);
                 
                 this.FileNumber.Content = String.Join(" / ", (this.ImageIdx + 1).ToString(), (this.ImageCount).ToString());
             }
@@ -129,6 +132,8 @@ namespace VintageGarmentDescriber
                     garmentDescIdx = 0;
                     ++this.ImageIdx;
                 }
+
+                AddedProp.Text = "";
 
                 foreach(Grid group in garmentUIGroups)
                 {

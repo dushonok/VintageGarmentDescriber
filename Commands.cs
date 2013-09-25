@@ -33,7 +33,7 @@ namespace VintageGarmentDescriber
         }
     }
 
-    public class LeftCommand : GenericCommand
+    public class PrevGarmentTypeCommand : GenericCommand
     {
         #region ICommand Members
 
@@ -49,17 +49,12 @@ namespace VintageGarmentDescriber
             base.Execute(parameter);
 
             --wnd.GarmentDescIdx;
-
-            wnd.AddedProp.Text = "";
-
-            LoadImgCommand cmd = new LoadImgCommand();
-            cmd.Execute(parameter);
         }
 
         #endregion
     }
 
-    public class RightCommand : GenericCommand
+    public class NextGarmentTypeCommand : GenericCommand
     {
         #region ICommand Members
 
@@ -78,18 +73,57 @@ namespace VintageGarmentDescriber
             //if (filenames != null && filenames.Count < wnd.ImageIndex + 2)
             //    return;
 
-            wnd.AddedProp.Text = "";
-
             if (wnd.GarmentDescIdx >= wnd.GarmentDescCount-1 && wnd.ImageIdx >= wnd.ImageCount-1)
                 return;
             
             ++wnd.GarmentDescIdx;
             
-            
-            LoadImgCommand cmd = new LoadImgCommand();
-            cmd.Execute(parameter);
+        }
 
-            
+        #endregion
+    }
+
+    public class PrevImageCommand : GenericCommand
+    {
+        #region ICommand Members
+
+        public override bool CanExecute(object parameter)
+        {
+            return base.CanExecute(parameter); // && wnd.ImageIndex > 0;
+        }
+
+        public event EventHandler CanExecuteChanged;
+
+        public override void Execute(object parameter)
+        {
+            base.Execute(parameter);
+
+            --wnd.ImageIdx;
+        }
+
+        #endregion
+    }
+
+    public class NextImageCommand : GenericCommand
+    {
+        #region ICommand Members
+
+        public override bool CanExecute(object parameter)
+        {
+            bool baseRes = base.CanExecute(parameter);
+            return baseRes; // &&  filenames != null && filenames.Count <= wnd.ImageIndex + 2;
+        }
+
+        public event EventHandler CanExecuteChanged;
+
+        public override void Execute(object parameter)
+        {
+            base.Execute(parameter);
+
+            if (wnd.GarmentDescIdx >= wnd.GarmentDescCount - 1 && wnd.ImageIdx >= wnd.ImageCount - 1)
+                return;
+
+            ++wnd.ImageIdx;
         }
 
         #endregion
