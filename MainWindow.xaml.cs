@@ -59,7 +59,7 @@ namespace VintageGarmentDescriber
 
             loadImgCmd = (LoadImgCommand)((MainViewModel)DataContext).LoadImgCommand;
 
-            ImageIndex = 0;
+            ImageIdx = 0;
             IsNewImage = true;
             GarmentDescIdx = -1;
 
@@ -73,7 +73,7 @@ namespace VintageGarmentDescriber
         
         
         Int32 imageIdx;
-        public Int32 ImageIndex
+        public Int32 ImageIdx
         {
             get
             {
@@ -84,17 +84,8 @@ namespace VintageGarmentDescriber
                 IsNewImage = imageIdx != value;
 
                 imageIdx = value;
-                if (value < 0)
-                {
-                    imageIdx = GarmentDescIdx == 0 ? 0 : this.ImageCount - 1;
-                    --GarmentDescIdx;
-                }
-                else if (value >= this.ImageCount && this.ImageCount != 0)
-                {
-                    ++GarmentDescIdx;
-                }
-
-                this.FileNumber.Content = String.Join(" / ", (this.ImageIndex + 1).ToString(), (this.ImageCount).ToString());
+                
+                this.FileNumber.Content = String.Join(" / ", (this.ImageIdx + 1).ToString(), (this.ImageCount).ToString());
             }
         }
 
@@ -119,18 +110,24 @@ namespace VintageGarmentDescriber
             {
                 if (garmentDescIdx > value)
                 {
-                    this.GarmentIdx = this.prevGarmentIdx;
+                    this.GarmentIdx = this.prevImageIdx;
                 }
                 else
                 {
-                    this.prevGarmentIdx = this.GarmentIdx;
+                    this.prevImageIdx = this.ImageIdx;
                     this.GarmentIdx = 0;
                 }
 
                 garmentDescIdx = value;
                 if (value < 0)
                 {
+                    garmentDescIdx = ImageIdx == 0 ? 0 : this.garmentUIGroups.Count - 1;
+                    --this.ImageIdx;
+                }
+                else if (this.garmentUIGroups != null && value >= this.garmentUIGroups.Count && this.garmentUIGroups.Count != 0)
+                {
                     garmentDescIdx = 0;
+                    ++this.ImageIdx;
                 }
 
                 foreach(Grid group in garmentUIGroups)
@@ -139,12 +136,14 @@ namespace VintageGarmentDescriber
                     if (group.Visibility == Visibility.Visible)
                     {
                         this.AddedPropLabel.Content = group.Name.Replace("Controls", "");
+                        this.AddedPropNumber.Content = String.Join(" / ", (this.GarmentDescIdx + 1).ToString(), 
+                            this.garmentUIGroups.Count.ToString());
                     }
                 }
             }
         }
 
-        Int32 prevGarmentIdx;
+        Int32 prevImageIdx;
         Int32 garmentIdx;
         public Int32 GarmentIdx
         {

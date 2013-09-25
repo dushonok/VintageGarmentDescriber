@@ -48,7 +48,7 @@ namespace VintageGarmentDescriber
         {
             base.Execute(parameter);
 
-            --wnd.ImageIndex;
+            --wnd.GarmentDescIdx;
 
             wnd.AddedProp.Text = "";
 
@@ -80,10 +80,10 @@ namespace VintageGarmentDescriber
 
             wnd.AddedProp.Text = "";
 
-            if (wnd.GarmentDescIdx >= wnd.GarmentDescCount-1 && wnd.ImageIndex >= wnd.ImageCount-1)
+            if (wnd.GarmentDescIdx >= wnd.GarmentDescCount-1 && wnd.ImageIdx >= wnd.ImageCount-1)
                 return;
             
-            wnd.ImageIndex++;
+            ++wnd.GarmentDescIdx;
             
             
             LoadImgCommand cmd = new LoadImgCommand();
@@ -178,17 +178,17 @@ namespace VintageGarmentDescriber
                 }
                 filenames.Sort();
 
-                wnd.ImageIndex = 0;
+                wnd.ImageIdx = 0;
                 wnd.ImageCount = filenames.Count;
             }
 
-            if (wnd.ImageIndex + 1 > filenames.Count || wnd.ImageIndex < 0)
-                wnd.ImageIndex = 0;
+            if (wnd.ImageIdx + 1 > filenames.Count || wnd.ImageIdx < 0)
+                wnd.ImageIdx = 0;
 
             if (wnd.ImageCount == 0)
                 return;
 
-            String filename = filenames[wnd.ImageIndex];
+            String filename = filenames[wnd.ImageIdx];
             wnd.FileName.Text = Path.GetFileName(filename);
             
             MainWindow.GarmentImageClass image = new MainWindow.GarmentImageClass(filename);
