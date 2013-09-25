@@ -60,6 +60,7 @@ namespace VintageGarmentDescriber
             loadImgCmd = (LoadImgCommand)((MainViewModel)DataContext).LoadImgCommand;
 
             ImageIndex = 0;
+            IsNewImage = true;
             GarmentDescIdx = -1;
 
             this.ImgFolder.Text = "D:\\Photos\\Processed\\SmallPhotos\\FF Online\\Clothes\\";
@@ -80,6 +81,8 @@ namespace VintageGarmentDescriber
             }
             set
             {
+                IsNewImage = imageIdx != value;
+
                 imageIdx = value;
                 if (value < 0)
                 {
@@ -96,6 +99,8 @@ namespace VintageGarmentDescriber
         }
 
         public Int32 ImageCount;
+
+        public bool IsNewImage;
 
         
         List<Grid> garmentUIGroups;
@@ -200,7 +205,11 @@ namespace VintageGarmentDescriber
             garmentDesc.Add(GarmentDescIdx, this.AddedProp.Text);
             Save(System.IO.Path.Combine(this.ImgFolder.Text, this.outputFileName));
 
-            ++this.GarmentIdx;
+            if (IsNewImage)
+            {
+                ++this.GarmentIdx;
+                IsNewImage = false;
+            }
         }
 
 

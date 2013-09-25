@@ -208,7 +208,7 @@ namespace VintageGarmentDescriber
         protected List<String> filenames = new List<string>();
         protected Button btn;
         static protected MainWindow wnd;
-
+        
         virtual public bool CanExecute(object parameter)
         {
             btn = ((Button)parameter);
@@ -222,6 +222,7 @@ namespace VintageGarmentDescriber
             btn = ((Button)parameter);
             if (wnd == null)
                 wnd = ((MainWindow)Utils.GetTopLevelControl(btn));
+
         }
 
         
@@ -241,7 +242,7 @@ namespace VintageGarmentDescriber
         public override void Execute(object parameter)
         {
             base.Execute(parameter);
-
+            
             String type = btn.Content.ToString();
             int lastIdxOfSpace = type.LastIndexOf(' ');
             wnd.AddedProp.Text = btn.Content.ToString().Remove(lastIdxOfSpace, type.Length - lastIdxOfSpace);
