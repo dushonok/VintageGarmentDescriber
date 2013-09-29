@@ -18,6 +18,8 @@ namespace VintageGarmentDescriber
             OpenFolderCommand = new OpenFolderCommand();
             LoadImgCommand = new LoadImgCommand();
             GarmentTypeCommand = new GarmentTypeCommand();
+
+            ChooseGarmentTypeCommand = new ChooseGarmentTypeCommand();
         }
 
         public PrevGarmentTypeCommand PrevGarmentTypeCommand
@@ -62,6 +64,12 @@ namespace VintageGarmentDescriber
             get;
             internal set;
         }
+
+        public ChooseGarmentTypeCommand ChooseGarmentTypeCommand
+        {
+            get;
+            internal set;
+        }        
         
     }
 }

@@ -47,6 +47,8 @@ namespace VintageGarmentDescriber
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainViewModel();
+
 
             garments = new List<GarmentDescription>();
 
@@ -55,8 +57,7 @@ namespace VintageGarmentDescriber
             garmentUIGroups.Add(this.YearControls);
             garmentUIGroups.Add(this.MaterialControls);
 
-            DataContext = new MainViewModel();
-
+            
             loadImgCmd = (LoadImgCommand)((MainViewModel)DataContext).LoadImgCommand;
 
             ImageIdx = 0;
@@ -191,6 +192,19 @@ namespace VintageGarmentDescriber
         }
 
 #endregion
+
+        public Grid GetVisibleGarmentUIGroup()
+        {
+            if (garmentUIGroups == null)
+                return null;
+
+            foreach (Grid group in garmentUIGroups)
+            {
+                if (group != null && group.Visibility == Visibility.Visible)
+                    return group;
+            }
+            return null;
+        }
 
         private void ImgFolder_TextChanged_1(object sender, TextChangedEventArgs e)
         {

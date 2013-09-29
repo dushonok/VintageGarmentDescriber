@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.IO;
+using System.Windows.Documents;
 
 namespace VintageGarmentDescriber
 {
@@ -264,8 +265,6 @@ namespace VintageGarmentDescriber
 
     public class GarmentTypeCommand : GarmentGenericCommand
     {
-        #region ICommand Members
-
         public override bool CanExecute(object parameter)
         {
             return base.CanExecute(parameter);
@@ -279,8 +278,40 @@ namespace VintageGarmentDescriber
 
             wnd.AddNewDescr(btn.Content.ToString());
         }
+    }
 
-        #endregion
+
+    public class ChooseGarmentTypeCommand : ICommand
+    {
+        static GarmentTypeCommand garmentTypeCmd = null;
+        static MainWindow wnd;
+
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public event EventHandler CanExecuteChanged;
+
+        public void Execute(object parameter)
+        {
+            //base.Execute(parameter);
+
+            List<object> list = (List<object>)parameter;
+            wnd = ((MainWindow)list[0]);
+            if (wnd == null)
+                return;
+
+            if (garmentTypeCmd == null)
+                garmentTypeCmd = new GarmentTypeCommand();
+
+            String txt = ((Key)list[1]).ToString();
+            Grid group = wnd.GetVisibleGarmentUIGroup();
+            Button btn = Utils.GetButtonByNamePart(group, txt);
+            
+            garmentTypeCmd.Execute(btn);
+
+        }
     }
 
     #endregion

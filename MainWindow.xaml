@@ -7,7 +7,7 @@
         DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <!-- Resources -->
     <Window.Resources>
-        <!--l:ShortcutButtonChooserConverter x:Key="ShortcutButtonChooser"/-->
+        <l:PassThroughConverter x:Key="PassThroughConverter"/>
     </Window.Resources>
     
     <!-- UI -->
@@ -31,11 +31,11 @@
                 Command="{Binding OpenFolderCommand}"  CommandParameter="{Binding ElementName=MainWindowForm}"/>
 
         <TextBox Name="FileName" Text="ttt.jpg" HorizontalAlignment="Stretch" Height="28" VerticalAlignment="Top" Margin="60,37,142,0"/>
-        <Label Name="FileNumber" Content="1 / 4" HorizontalAlignment="Right" Height="28" Margin="0,35,494,0" VerticalAlignment="Top" Width="57"/>
+        <Label Name="FileNumber" Content="1 / 4" HorizontalAlignment="Left" Height="28" Margin="0,35,494,0" VerticalAlignment="Top" Width="57"/>
         
         <Grid Name="TypeControls"  Height="125" Margin="0,630,0,0" VerticalAlignment="Bottom" Visibility="Visible">
             <Label Content="Type Of Garment" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,7,0,0"/>
-            <Button Content="Dress f" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
+            <Button Name="Dress" Content="Dress f" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
         		Margin="5,38, 0, 0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Blouse j" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
         		Margin="119,38,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
@@ -44,7 +44,7 @@
             <Button Content="Purse u" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="106" 
         		Margin="348,38,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Skirt g" HorizontalAlignment="Left" 
-        		Margin="454,38,0,56" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Width="97"/>
+        		Margin="454,38,0,52" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Width="97"/>
             <Button Content="Shorts h" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="114" 
         		Margin="5,73,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Jumper d" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
@@ -113,13 +113,87 @@
     </Grid>
    
     <Window.InputBindings>
-        <KeyBinding Key="Left" Modifiers="" Command="{Binding PrevGarmentTypeCommand}"  CommandParameter="{Binding ElementName=MainWindowForm}"/>
+        <!--KeyBinding Key="Left" Modifiers="" Command="{Binding PrevGarmentTypeCommand}"  CommandParameter="{Binding ElementName=MainWindowForm}"/-->
         <KeyBinding Key="Right" Modifiers="" Command="{Binding NextGarmentTypeCommand}"  CommandParameter="{Binding ElementName=MainWindowForm}"/>
         <KeyBinding Key="Left" Modifiers="Control" Command="{Binding PrevImageCommand}"  CommandParameter="{Binding ElementName=MainWindowForm}"/>
         <KeyBinding Key="Right" Modifiers="Control" Command="{Binding NextImageCommand}"  CommandParameter="{Binding ElementName=MainWindowForm}"/>
         <KeyBinding Key="Space" Modifiers="" Command="{Binding RightCommand}"  CommandParameter="{Binding ElementName=MainWindowForm}"/>
+        <KeyBinding Key="Enter" Modifiers="" Command="{Binding RightCommand}"  CommandParameter="{Binding ElementName=MainWindowForm}"/>
         <KeyBinding Key="O" Modifiers="Control" Command="{Binding OpenFolderCommand}" CommandParameter="{Binding ElementName=MainWindowForm}"/>
         <!-- Garment Descriptions -->
-        <KeyBinding Key="F" Modifiers="" Command="{Binding GarmentTypeCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+        <KeyBinding Key="F" Modifiers="" Command="{Binding ChooseGarmentTypeCommand}">
+            <KeyBinding.CommandParameter>
+                <MultiBinding Converter="{StaticResource PassThroughConverter}">
+                    <Binding ElementName="MainWindowForm"/>
+                    <Binding Path="Key" RelativeSource="{RelativeSource Self}"/>
+                </MultiBinding>
+            </KeyBinding.CommandParameter>
+        </KeyBinding>
+        <KeyBinding Key="j" Modifiers="" Command="{Binding ChooseGarmentTypeCommand}">
+            <KeyBinding.CommandParameter>
+                <MultiBinding Converter="{StaticResource PassThroughConverter}">
+                    <Binding ElementName="MainWindowForm"/>
+                    <Binding Path="Key" RelativeSource="{RelativeSource Self}"/>
+                </MultiBinding>
+            </KeyBinding.CommandParameter>
+        </KeyBinding>
+        <KeyBinding Key="R" Modifiers="" Command="{Binding ChooseGarmentTypeCommand}">
+            <KeyBinding.CommandParameter>
+                <MultiBinding Converter="{StaticResource PassThroughConverter}">
+                    <Binding ElementName="MainWindowForm"/>
+                    <Binding Path="Key" RelativeSource="{RelativeSource Self}"/>
+                </MultiBinding>
+            </KeyBinding.CommandParameter>
+        </KeyBinding>
+        <KeyBinding Key="U" Modifiers="" Command="{Binding ChooseGarmentTypeCommand}">
+            <KeyBinding.CommandParameter>
+                <MultiBinding Converter="{StaticResource PassThroughConverter}">
+                    <Binding ElementName="MainWindowForm"/>
+                    <Binding Path="Key" RelativeSource="{RelativeSource Self}"/>
+                </MultiBinding>
+            </KeyBinding.CommandParameter>
+        </KeyBinding>
+        <KeyBinding Key="g" Modifiers="" Command="{Binding ChooseGarmentTypeCommand}">
+            <KeyBinding.CommandParameter>
+                <MultiBinding Converter="{StaticResource PassThroughConverter}">
+                    <Binding ElementName="MainWindowForm"/>
+                    <Binding Path="Key" RelativeSource="{RelativeSource Self}"/>
+                </MultiBinding>
+            </KeyBinding.CommandParameter>
+        </KeyBinding>
+        <KeyBinding Key="h" Modifiers="" Command="{Binding ChooseGarmentTypeCommand}">
+            <KeyBinding.CommandParameter>
+                <MultiBinding Converter="{StaticResource PassThroughConverter}">
+                    <Binding ElementName="MainWindowForm"/>
+                    <Binding Path="Key" RelativeSource="{RelativeSource Self}"/>
+                </MultiBinding>
+            </KeyBinding.CommandParameter>
+        </KeyBinding>
+        <KeyBinding Key="d" Modifiers="" Command="{Binding ChooseGarmentTypeCommand}">
+            <KeyBinding.CommandParameter>
+                <MultiBinding Converter="{StaticResource PassThroughConverter}">
+                    <Binding ElementName="MainWindowForm"/>
+                    <Binding Path="Key" RelativeSource="{RelativeSource Self}"/>
+                </MultiBinding>
+            </KeyBinding.CommandParameter>
+        </KeyBinding>
+        <KeyBinding Key="k" Modifiers="" Command="{Binding ChooseGarmentTypeCommand}">
+            <KeyBinding.CommandParameter>
+                <MultiBinding Converter="{StaticResource PassThroughConverter}">
+                    <Binding ElementName="MainWindowForm"/>
+                    <Binding Path="Key" RelativeSource="{RelativeSource Self}"/>
+                </MultiBinding>
+            </KeyBinding.CommandParameter>
+        </KeyBinding>
+        <KeyBinding Key="v" Modifiers="" Command="{Binding ChooseGarmentTypeCommand}">
+            <KeyBinding.CommandParameter>
+                <MultiBinding Converter="{StaticResource PassThroughConverter}">
+                    <Binding ElementName="MainWindowForm"/>
+                    <Binding Path="Key" RelativeSource="{RelativeSource Self}"/>
+                </MultiBinding>
+            </KeyBinding.CommandParameter>
+        </KeyBinding>
+
+
     </Window.InputBindings>
 </Window>
