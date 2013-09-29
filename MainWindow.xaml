@@ -113,12 +113,13 @@
     </Grid>
    
     <Window.InputBindings>
-        <!--KeyBinding Key="Left" Modifiers="" Command="{Binding PrevGarmentTypeCommand}"  CommandParameter="{Binding ElementName=MainWindowForm}"/-->
+        <KeyBinding Key="Left" Modifiers="" Command="{Binding PrevGarmentTypeCommand}"  CommandParameter="{Binding ElementName=MainWindowForm}"/>
         <KeyBinding Key="Right" Modifiers="" Command="{Binding NextGarmentTypeCommand}"  CommandParameter="{Binding ElementName=MainWindowForm}"/>
         <KeyBinding Key="Left" Modifiers="Control" Command="{Binding PrevImageCommand}"  CommandParameter="{Binding ElementName=MainWindowForm}"/>
         <KeyBinding Key="Right" Modifiers="Control" Command="{Binding NextImageCommand}"  CommandParameter="{Binding ElementName=MainWindowForm}"/>
-        <KeyBinding Key="Space" Modifiers="" Command="{Binding RightCommand}"  CommandParameter="{Binding ElementName=MainWindowForm}"/>
-        <KeyBinding Key="Enter" Modifiers="" Command="{Binding RightCommand}"  CommandParameter="{Binding ElementName=MainWindowForm}"/>
+        <KeyBinding Key="Space" Modifiers="" Command="{Binding NextGarmentTypeCommand}"  CommandParameter="{Binding ElementName=MainWindowForm}"/>
+        <KeyBinding Key="Space" Modifiers="Control" Command="{Binding NextImageCommand}"  CommandParameter="{Binding ElementName=MainWindowForm}"/>
+        <KeyBinding Key="Enter" Modifiers="" Command="{Binding NextGarmentTypeCommand}"  CommandParameter="{Binding ElementName=MainWindowForm}"/>
         <KeyBinding Key="O" Modifiers="Control" Command="{Binding OpenFolderCommand}" CommandParameter="{Binding ElementName=MainWindowForm}"/>
         <!-- Garment Descriptions -->
         <KeyBinding Key="F" Modifiers="" Command="{Binding ChooseGarmentTypeCommand}">

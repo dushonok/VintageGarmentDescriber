@@ -219,6 +219,7 @@ namespace VintageGarmentDescriber
             String type = text;
             int lastIdxOfSpace = type.LastIndexOf(' ');
             AddedProp.Text = text.Remove(lastIdxOfSpace, type.Length - lastIdxOfSpace);
+            this.Focus();
             
             if (IsNextImage)
             {

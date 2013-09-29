@@ -22,7 +22,7 @@ namespace VintageGarmentDescriber
             return parent;
         }
 
-        static public Button GetButtonByNamePart(Visual control, String str)
+        static public Button GetButtonByNamePart(Visual control, String namePartStr)
         {
             if (control == null)
                 return null;
@@ -37,7 +37,7 @@ namespace VintageGarmentDescriber
                     btn = (Button)obj;
                     int pos = btn.Content.ToString().LastIndexOf(' ');
                     String str02 = btn.Content.ToString().Substring(pos, 2);
-                    if (str02 != null && str.Trim().Equals(str.Trim(), StringComparison.InvariantCultureIgnoreCase))
+                    if (str02 != null && str02.Trim().Equals(namePartStr.Trim(), StringComparison.InvariantCultureIgnoreCase))
                         return btn;
                 }
             }
