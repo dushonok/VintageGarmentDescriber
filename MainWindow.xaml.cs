@@ -69,7 +69,7 @@ namespace VintageGarmentDescriber
             outputFileName = "descr.txt";
 
             ResultStr.Visibility = Visibility.Visible;
-            
+
         }
 
 #region properties
@@ -239,7 +239,7 @@ namespace VintageGarmentDescriber
                 IsPrevImage = false;
             }
 
-            if (garments.Count < this.GarmentIdx + 1)
+            while (garments.Count <= this.GarmentIdx)
             {
                 garments.Add(new GarmentDescription());
             }
@@ -274,21 +274,21 @@ namespace VintageGarmentDescriber
             // Body
             for (int i = 0; i < garments.Count; ++i )
             {
-                sw.Write(garments[i].ConvertToFileLine());
+                String newLine = garments[i].ConvertToFileLine();
+                if (String.IsNullOrEmpty(newLine))
+                    continue;
+
+                sw.Write(newLine);
                 sw.Write(sw.NewLine);
 
-                ResultStr.Text = ResultStr.Text + "\n" + garments[i].ConvertToFileLine();
+                ResultStr.Text = ResultStr.Text + "\n" + newLine;
             }
 
             sw.Close();
             ResultStr.Text = ResultStr.Text.Trim();
         }
 
-        private void ResultStr_MouseLeftButtonUp_1(object sender, MouseButtonEventArgs e)
-        {
-            ResultStr.SelectAll();
-        }
-
+        
         
     }
 

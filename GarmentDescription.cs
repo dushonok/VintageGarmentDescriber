@@ -111,7 +111,7 @@ namespace VintageGarmentDescriber
                 return sleeve.Equals("n/a") ? "" : sleeve;
             }
         }
-        String SleevePlural { get { return Sleeve + "s"; } }
+        String SleevePlural { get { return String.IsNullOrEmpty(Sleeve) ? "" : (Sleeve + "s"); } }
 
 
         Dictionary<String, String> measurements;
@@ -134,6 +134,9 @@ namespace VintageGarmentDescriber
 
         public String ConvertToFileLine()
         {
+            if (String.IsNullOrEmpty(Type))
+                return "";
+
             String res = String.Join("\t", 
                 GetShortTitle(), 
                 GetFullTitle(), 

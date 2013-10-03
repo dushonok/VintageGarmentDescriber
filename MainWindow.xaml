@@ -52,77 +52,77 @@
         		Margin="234,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Coat v" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="106" 
         		Margin="348,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
-            <Button Content="" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" 
-        		Margin="454,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Width="97"/>
+            <Button Content="" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top"  Width="106" 
+        		Margin="454,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             
 
         </Grid>
         <Grid Name="YearControls" Height="84" Margin="0,0,10,41" VerticalAlignment="Bottom" Visibility="Collapsed">
             <Button Content="1990s f" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
-            			Margin="4,10,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            			Margin="4,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="1980s j" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
-            			Margin="118,10,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            			Margin="118,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="1970s r" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="114" 
-            			Margin="233,10,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            			Margin="233,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="1960s u" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="106" 
-            			Margin="347,10,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            			Margin="347,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="1950s g" HorizontalAlignment="Left"  Height="35" VerticalAlignment="Top" Width="106" 
-            			Margin="453,10,-18,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            			Margin="453,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="1950s h" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="114" 
-            			Margin="4,45,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            			Margin="4,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="before 1993 d" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
-            			Margin="118,45,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            			Margin="118,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="114" 
-            			Margin="233,45,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            			Margin="233,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="106" 
-            			Margin="347,45,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
-            <Button Content="" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" 
-            			Margin="453,45,-9,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Width="97"/>
+            			Margin="347,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            <Button Content="" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="106"  
+            			Margin="453,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
         </Grid>
         <Grid Name="MaterialControls" Height="84" VerticalAlignment="Bottom" Margin="0,0,0,41" Visibility="Collapsed">
             <Button Content="N/A f" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
-            		Margin="5,8,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            		Margin="5,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Polyester j" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
-            		Margin="119,8,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            		Margin="119,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Denim r" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="114" 
-            		Margin="234,8,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            		Margin="234,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Rayon u" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="106" 
-            		Margin="348,8,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            		Margin="348,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Faux Leather g" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="106" 
-            		Margin="454,8,-9,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            		Margin="454,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Silk h" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="114" 
-            		Margin="5,43,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            		Margin="5,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Cotton d" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
-            		Margin="119,43,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            		Margin="119,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Wool k" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="114" 
-            		Margin="234,43,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            		Margin="234,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="106" 
-            		Margin="348,43,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
-            <Button Content="" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" 
-            		Margin="454,43,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Width="97"/>
+            		Margin="348,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            <Button Content="" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top"  Width="106" 
+            		Margin="454,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             
         </Grid>
         <Grid Name="SleevesControls" Height="84" VerticalAlignment="Bottom" Margin="0,0,0,41" Visibility="Collapsed">
             <Button Content="N/A f" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
-            		Margin="5,5,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            		Margin="5,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Short sleeve j" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
-            		Margin="119,5,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            		Margin="119,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Half sleeve r" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="114" 
-            		Margin="234,5,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            		Margin="234,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Two third sleeve u" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="106" 
-            		Margin="348,5,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            		Margin="348,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Three quarter Sleeve g" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="106" 
-            		Margin="454,5,-9,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            		Margin="454,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Dolman sleeve h" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="114" 
-            		Margin="5,40,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            		Margin="5,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content=" d" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
-            		Margin="119,40,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            		Margin="119,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content=" k" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="114" 
-            		Margin="234,40,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            		Margin="234,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="106" 
-            		Margin="348,40,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
-            <Button Content="" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" 
-            		Margin="454,40,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Width="97"/>
+            		Margin="348,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            <Button Content="" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top"  Width="106" 
+            		Margin="454,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
 
         </Grid>
         <Button Content="Prev Ctrl+&lt;" HorizontalAlignment="Right" Margin="0,38,69,0" VerticalAlignment="Top" Width="70" Height="26" 
@@ -131,7 +131,6 @@
         	Command="{Binding NextImageCommand}"  CommandParameter="{Binding ElementName=MainWindowForm}" Panel.ZIndex="1"/>
         <TextBox Name="ResultStr" Text="bla" HorizontalAlignment="Stretch" Margin="0,0,0,5" TextWrapping="Wrap" Visibility="Visible" 
                    VerticalAlignment="Bottom" Height="142" ScrollViewer.VerticalScrollBarVisibility="Auto"
-                 MouseLeftButtonUp="ResultStr_MouseLeftButtonUp_1"
                  />
 
     </Grid>
