@@ -36,7 +36,7 @@
         <Grid Name="TypeControls"  Height="83" Margin="0,106,0,0" VerticalAlignment="Top" Visibility="Visible">
             <Button Name="Dress" Content="Dress f" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
         		Margin="5,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
-            <Button Content="Blouse j" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
+            <Button Content="Blouse j" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="114" 
         		Margin="119,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Pants r" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="114" 
         		Margin="234,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
