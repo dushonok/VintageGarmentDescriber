@@ -56,6 +56,7 @@ namespace VintageGarmentDescriber
             garmentUIGroups.Add(this.TypeControls);
             garmentUIGroups.Add(this.YearControls);
             garmentUIGroups.Add(this.MaterialControls);
+            garmentUIGroups.Add(this.SleevesControls);
 
             
             loadImgCmd = (LoadImgCommand)((MainViewModel)DataContext).LoadImgCommand;
@@ -66,6 +67,8 @@ namespace VintageGarmentDescriber
 
             this.ImgFolder.Text = "D:\\Photos\\Processed\\SmallPhotos\\FF Online\\Clothes\\";
             outputFileName = "descr.txt";
+
+            ResultStr.Visibility = Visibility.Visible;
             
         }
 
@@ -142,6 +145,10 @@ namespace VintageGarmentDescriber
                     group.Visibility = garmentUIGroups.IndexOf(group) == garmentDescIdx ? Visibility.Visible : Visibility.Collapsed;
                     if (group.Visibility == Visibility.Visible)
                     {
+                        group.Margin = TypeControls.Margin;
+                        group.VerticalAlignment = TypeControls.VerticalAlignment;
+                        group.Height = TypeControls.Height;
+
                         this.AddedPropLabel.Content = group.Name.Replace("Controls", "");
                         this.AddedPropNumber.Content = String.Join(" / ", (this.GarmentDescIdx + 1).ToString(), 
                             this.garmentUIGroups.Count.ToString());
@@ -248,6 +255,7 @@ namespace VintageGarmentDescriber
         public void Save(String filename)
         {
             StreamWriter sw = new StreamWriter(filename, false);
+            ResultStr.Text = "";
 
             //// Header
             //int iColCount = garments[0].ColNumber;
@@ -268,9 +276,17 @@ namespace VintageGarmentDescriber
             {
                 sw.Write(garments[i].ConvertToFileLine());
                 sw.Write(sw.NewLine);
+
+                ResultStr.Text = ResultStr.Text + "\n" + garments[i].ConvertToFileLine();
             }
 
             sw.Close();
+            ResultStr.Text = ResultStr.Text.Trim();
+        }
+
+        private void ResultStr_MouseLeftButtonUp_1(object sender, MouseButtonEventArgs e)
+        {
+            ResultStr.SelectAll();
         }
 
         

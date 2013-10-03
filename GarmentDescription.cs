@@ -102,7 +102,17 @@ namespace VintageGarmentDescriber
                 return material.Equals("n/a") ? "" : material; 
             } 
         }
-        String SizeOfModel { get { return ""; } } // Nadya/ Michelle
+        String SizeOfModel { get { return ""; } } // Nadya/ Michelle/Myriam/Maude
+        String Sleeve
+        {
+            get
+            {
+                String sleeve = GetField(4).ToLower();
+                return sleeve.Equals("n/a") ? "" : sleeve;
+            }
+        }
+        String SleevePlural { get { return Sleeve + "s"; } }
+
 
         Dictionary<String, String> measurements;
         Dictionary<String, String> garmentSynonims;
@@ -163,9 +173,10 @@ namespace VintageGarmentDescriber
         String GetFullTitle()
         {
             String title = String.Join(" ", 
-                    FirtsLetterToUpper(UsageType), 
-                    FirtsLetterToUpper(Year), 
-                    FirtsLetterToUpper(Type)
+                    WordFirstLettersToUpper(UsageType), 
+                    WordFirstLettersToUpper(Year),
+                    WordFirstLettersToUpper(Sleeve), 
+                    WordFirstLettersToUpper(Type)
                   ).Trim();
             title.Replace('\'', '\x0');
             return PutInQuotes(title);
@@ -173,16 +184,20 @@ namespace VintageGarmentDescriber
 
         String GetShortTitle()
         {
-            return PutInQuotes(String.Join(" ", Year, Type).Trim());
+            return PutInQuotes(String.Join(" ", Year, Sleeve, Type).Trim());
         }
 
         String GetDesc()
         {
-            String newUsageType = FirtsLetterToUpper(UsageType);
-            String newType = FirtsLetterToLower(Type);
+            String newUsageType = WordFirstLettersToUpper(UsageType);
+            String newType = AllToLower(Type);
             String madeIn = String.IsNullOrEmpty(Year) ? "" : "made in " + Year;
             String desc = String.Join(" ", newUsageType, newType, madeIn);
-            desc = String.Join("\n", desc, FirtsLetterToUpper(Material));
+            desc = String.Join("\n", 
+                    desc, 
+                    VeryFirstLetterToUpper(SleevePlural.ToLower()), 
+                    VeryFirstLetterToUpper(Material.ToLower())
+                );
             return PutInQuotes(desc.Trim());
         }
 
@@ -205,7 +220,7 @@ namespace VintageGarmentDescriber
 
         String GetTags()
         {
-            String tags = String.Join(",", UsageType, Type, Year, Material);
+            String tags = String.Join(",", UsageType, Type, Year, Material, SleevePlural);
             if (garmentSynonims.ContainsKey(Type.ToLower()))
                 tags = String.Join(",", tags, garmentSynonims[Type.ToLower()]);
             return PutInQuotes(tags);
@@ -222,18 +237,35 @@ namespace VintageGarmentDescriber
             return txt;
         }
 
-        String FirtsLetterToLower(String txt)
+        String AllToLower(String txt)
         {
             if (String.IsNullOrEmpty(txt))
                 return "";
-            return txt.Substring(0, 1).ToLower() + txt.Substring(1, txt.Length - 1);
+           
+            return txt.ToLower();
         }
 
-        String FirtsLetterToUpper(String txt)
+        String WordFirstLettersToUpper(String txt)
         {
             if (String.IsNullOrEmpty(txt))
                 return "";
-            return txt.Substring(0, 1).ToUpper() + txt.Substring(1, txt.Length - 1);
+
+            String[] words = txt.Split(' ');
+            for (int i = 0; i < words.Length; ++i )
+            {
+                String str = words[i].Trim();
+                words[i] = str.Substring(0, 1).ToUpper() + str.Substring(1, str.Length - 1);
+            }
+
+            return String.Join(" ", words);
+        }
+
+        String VeryFirstLetterToUpper(String str)
+        {
+            if (String.IsNullOrEmpty(str))
+                return "";
+
+            return str.Substring(0, 1).ToUpper() + str.Substring(1, str.Length - 1);
         }
 
         List<String> descriptions;
