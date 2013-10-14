@@ -57,6 +57,8 @@ namespace VintageGarmentDescriber
             garmentUIGroups.Add(this.YearControls);
             garmentUIGroups.Add(this.MaterialControls);
             garmentUIGroups.Add(this.SleevesControls);
+            garmentUIGroups.Add(this.SkirtLenghtControls);
+            garmentUIGroups.Add(this.MadeInControls);
 
             
             loadImgCmd = (LoadImgCommand)((MainViewModel)DataContext).LoadImgCommand;
@@ -65,7 +67,7 @@ namespace VintageGarmentDescriber
             IsNextImage = false;
             GarmentDescIdx = -1;
 
-            this.ImgFolder.Text = "D:\\Photos\\Processed\\SmallPhotos\\FF Online\\Clothes\\";
+            this.ImgFolder.Text = "D:\\Photos\\Processed\\SmallPhotos\\FF Online\\Clothes\\winter 2013-2014\\";
             outputFileName = "descr.txt";
 
             ResultStr.Visibility = Visibility.Visible;

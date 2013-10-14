@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace VintageGarmentDescriber
 {
     public class GarmentDescription
     {
+        const String tagSeparator = ", ";
+
         public GarmentDescription()
         {
             descriptions = new List<String>(50);
@@ -16,7 +19,7 @@ namespace VintageGarmentDescriber
             ++idx;
 
             measurements = new Dictionary<string,string>();
-            garmentSynonims = new Dictionary<string, string>();
+            synonims = new Dictionary<string, string>();
 
             FillDefinitions();
 
@@ -25,7 +28,7 @@ namespace VintageGarmentDescriber
         private void FillDefinitions()
         {
             measurements.Clear();
-            garmentSynonims.Clear();
+            synonims.Clear();
 
             measurements.Add("blouse", String.Join("\n",
                                     "Size: ",
@@ -36,13 +39,13 @@ namespace VintageGarmentDescriber
                                     "Sleeves: ''",
                                     "Bust:''",
                                     "Waist: ''"));
-            garmentSynonims.Add("blouse", String.Join("\n",
+            synonims.Add("blouse", String.Join("\n",
                                     "shirt"
                                 ));
 
             measurements.Add("jacket", measurements["blouse"]);
-            garmentSynonims.Add("jacket", String.Join("\n",
-                                    "blaser"
+            synonims.Add("jacket", String.Join("\n",
+                                    "blazer"
                                 ));
 
             measurements.Add("coat", measurements["blouse"]);
@@ -63,11 +66,10 @@ namespace VintageGarmentDescriber
                                 String.Join("\n",
                                     "Rise: ''",
                                     "Inseam: ''",
-                                    "Inseam: ''",
                                     "Flare: ''"
                                     ));
             measurements.Add("pants", measurements["shorts"]);
-            garmentSynonims.Add("pants", String.Join("\n",
+            synonims.Add("pants", String.Join("\n",
                                     "trousers"
                                 ));
 
@@ -77,7 +79,7 @@ namespace VintageGarmentDescriber
                                     "Shoulder: ''",
                                     "Bust: ''"
                                     );
-            garmentSynonims.Add("jumper", String.Join("\n",
+            synonims.Add("jumper", String.Join("\n",
                                     "romper",
                                     "overall"
                                 ));
@@ -89,6 +91,22 @@ namespace VintageGarmentDescriber
                                     "Bag Width: ''",
                                     "Bag Length: ''",
                                     "Bag Height: ''"));
+
+            synonims.Add("long", String.Join("\n",
+                                    "maxi"
+                                ));
+            synonims.Add("mid calf", String.Join("\n",
+                                    "midi"
+                                ));
+            synonims.Add("short", String.Join("\n",
+                                    "mini"
+                                ));
+            synonims.Add("canada", String.Join("\n",
+                                    "Canadian"
+                                ));
+            synonims.Add("usa", String.Join("\n",
+                                    "American"
+                                ));
         }
 
         String UsageType { get { return GetField(0); } } // vintage / second hand
@@ -111,11 +129,39 @@ namespace VintageGarmentDescriber
                 return sleeve.Equals("n/a") ? "" : sleeve;
             }
         }
-        String SleevePlural { get { return String.IsNullOrEmpty(Sleeve) ? "" : (Sleeve + "s"); } }
+        String SleevePlural { 
+            get {
+
+                if (String.Compare("Sleeveless", Sleeve, true) == 0)
+                    return Sleeve;
+                return String.IsNullOrEmpty(Sleeve) ? "" : (Sleeve + "s"); 
+            }
+        }
+        String SkirtLenght {
+            get {
+                    String lenght = GetField(5).ToLower();
+                    return lenght.Equals("n/a") ? "" : lenght; 
+                }
+        }
+        String MadeIn
+        {
+            get
+            {
+                String madeIn = GetField(6).ToLower();
+                return madeIn.Equals("n/a") ? "" : madeIn;
+            }
+        }
+        String MadeInCountry
+        {
+            get {
+                return String.IsNullOrEmpty(MadeIn) ? "" : "Made in " + VeryFirstLetterToUpper(MadeIn);
+            }
+        }
+
 
 
         Dictionary<String, String> measurements;
-        Dictionary<String, String> garmentSynonims;
+        Dictionary<String, String> synonims;
 
         String GetField(Int32 idx)
         {
@@ -178,16 +224,17 @@ namespace VintageGarmentDescriber
             String title = String.Join(" ", 
                     WordFirstLettersToUpper(UsageType), 
                     WordFirstLettersToUpper(Year),
-                    WordFirstLettersToUpper(Sleeve), 
+                    WordFirstLettersToUpper(Sleeve),
+                    WordFirstLettersToUpper(SkirtLenght), 
                     WordFirstLettersToUpper(Type)
-                  ).Trim();
+                  );
             title.Replace('\'', '\x0');
-            return PutInQuotes(title);
+            return PutInQuotes(RemoveDuplicatedThings(title));
         }
 
         String GetShortTitle()
         {
-            return PutInQuotes(String.Join(" ", Year, Sleeve, Type).Trim());
+            return PutInQuotes(RemoveDuplicatedThings(String.Join(" ", Year, Sleeve, Type)));
         }
 
         String GetDesc()
@@ -198,10 +245,13 @@ namespace VintageGarmentDescriber
             String desc = String.Join(" ", newUsageType, newType, madeIn);
             desc = String.Join("\n", 
                     desc, 
+                    String.IsNullOrEmpty(SkirtLenght) ? "" : VeryFirstLetterToUpper(SkirtLenght) + " skirt",
                     VeryFirstLetterToUpper(SleevePlural.ToLower()), 
-                    VeryFirstLetterToUpper(Material.ToLower())
+                    VeryFirstLetterToUpper(Material.ToLower()),
+                    " ",
+                    MadeInCountry
                 );
-            return PutInQuotes(desc.Trim());
+            return PutInQuotes(RemoveDuplicatedThings(desc));
         }
 
         String GetCondition()
@@ -223,10 +273,17 @@ namespace VintageGarmentDescriber
 
         String GetTags()
         {
-            String tags = String.Join(",", UsageType, Type, Year, Material, SleevePlural);
-            if (garmentSynonims.ContainsKey(Type.ToLower()))
-                tags = String.Join(",", tags, garmentSynonims[Type.ToLower()]);
-            return PutInQuotes(tags);
+            String tags = String.Join(tagSeparator, UsageType, Type, Year, Material, SleevePlural, SkirtLenght,
+                MadeInCountry);
+            if (synonims.ContainsKey(Type.ToLower()))
+                tags = String.Join(tagSeparator, tags, synonims[Type.ToLower()]);
+            if (synonims.ContainsKey(SkirtLenght.ToLower()))
+                tags = String.Join(tagSeparator, tags, synonims[SkirtLenght.ToLower()]);
+            if (synonims.ContainsKey(Sleeve.ToLower()))
+                tags = String.Join(tagSeparator, tags, synonims[Sleeve.ToLower()]);
+            if (synonims.ContainsKey(MadeIn.ToLower()))
+                tags = String.Join(tagSeparator, tags, synonims[MadeIn.ToLower()]);
+            return PutInQuotes(RemoveDuplicatedThings(tags));
         }
 
         String GetModelSize()
@@ -269,6 +326,26 @@ namespace VintageGarmentDescriber
                 return "";
 
             return str.Substring(0, 1).ToUpper() + str.Substring(1, str.Length - 1);
+        }
+
+        String RemoveDuplicatedThings(String input)
+        {
+            String pattern = "[^\\S\\n]+";
+            String replacement = " ";
+            Regex rgx = new Regex(pattern);
+            string result = rgx.Replace(input, replacement);
+
+            pattern = "(\\n){2,}";
+            replacement = "\n";
+            rgx = new Regex(pattern);
+            result = rgx.Replace(result, replacement);
+
+            pattern = "(" + tagSeparator + ")+";
+            replacement = tagSeparator;
+            rgx = new Regex(pattern);
+            result = rgx.Replace(result, replacement);
+
+            return result.Trim();
         }
 
         List<String> descriptions;
