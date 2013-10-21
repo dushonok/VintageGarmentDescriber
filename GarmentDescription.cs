@@ -70,7 +70,8 @@ namespace VintageGarmentDescriber
                                     ));
             measurements.Add("pants", measurements["shorts"]);
             synonims.Add("pants", String.Join("\n",
-                                    "trousers"
+                                    "trousers",
+                                    "slacks"
                                 ));
 
             measurements.Add("jumper", measurements["shorts"]);
@@ -268,7 +269,11 @@ namespace VintageGarmentDescriber
         {
             if (!measurements.ContainsKey(Type.ToLower()))
                 return "";
-            return PutInQuotes(measurements[Type.ToLower()]);
+            return PutInQuotes(String.Join("\n", 
+                    measurements[Type.ToLower()], 
+                    " " , 
+                    "Wondering how we measure our items? See in our Shop Policies!")
+                 );
         }
 
         String GetTags()

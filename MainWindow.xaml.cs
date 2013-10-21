@@ -67,7 +67,7 @@ namespace VintageGarmentDescriber
             IsNextImage = false;
             GarmentDescIdx = -1;
 
-            this.ImgFolder.Text = "D:\\Photos\\Processed\\SmallPhotos\\FF Online\\Clothes\\winter 2013-2014\\";
+            this.ImgFolder.Text = "D:\\Photos\\Processed\\SmallPhotos\\FF Online\\Clothes\\";
             outputFileName = "descr.txt";
 
             ResultStr.Visibility = Visibility.Visible;
