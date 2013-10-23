@@ -50,6 +50,18 @@ namespace VintageGarmentDescriber
 
             measurements.Add("coat", measurements["blouse"]);
 
+            measurements.Add("cape", String.Join("\n",
+                                    "Size: ",
+                                    "Fit: ",
+                                    "",
+                                    "Length: ''",
+                                    "Shoulder: ''"));
+            synonims.Add("cape", String.Join("\n",
+                                    "coat",
+                                    "cloak",
+                                    "sleeveless coat"
+                                ));
+
             measurements.Add("dress", measurements["blouse"] + "\n" +
                                     String.Join("\n",
                                     "Belt: ''"));
@@ -262,7 +274,7 @@ namespace VintageGarmentDescriber
 
         String GetIncludedAccessories()
         {
-            return PutInQuotes("None of the accessories or other items included");
+            return PutInQuotes("None of the accessories or other items included. Available for purchase in the physical store");
         }
 
         String GetMeasurements()

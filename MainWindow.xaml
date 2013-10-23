@@ -52,7 +52,7 @@
         		Margin="234,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Coat v" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="106" 
         		Margin="348,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
-            <Button Content="" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top"  Width="106" 
+            <Button Content="Cape n" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top"  Width="106" 
         		Margin="454,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             
 
@@ -98,7 +98,7 @@
             		Margin="234,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Leather l" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="106" 
             		Margin="348,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
-            <Button Content="" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top"  Width="106" 
+            <Button Content="Fur v" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top"  Width="106" 
             		Margin="454,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             
         </Grid>
@@ -273,6 +273,13 @@
                 </MultiBinding>
             </KeyBinding.CommandParameter>
         </KeyBinding>
-
+        <KeyBinding Key="n" Modifiers="" Command="{Binding ChooseGarmentTypeCommand}">
+            <KeyBinding.CommandParameter>
+                <MultiBinding Converter="{StaticResource PassThroughConverter}">
+                    <Binding ElementName="MainWindowForm"/>
+                    <Binding Path="Key" RelativeSource="{RelativeSource Self}"/>
+                </MultiBinding>
+            </KeyBinding.CommandParameter>
+        </KeyBinding>
     </Window.InputBindings>
 </Window>
