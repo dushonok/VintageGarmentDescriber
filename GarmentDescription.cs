@@ -204,10 +204,10 @@ namespace VintageGarmentDescriber
                 GetIncludedAccessories(),
                 GetModelSize(),
                 GetMeasurements(),
-                "",
-                "",
                 GetTags(),
-                Material
+                Material,
+                "", // price
+                ""  // photo link
             );
 
             return res;
