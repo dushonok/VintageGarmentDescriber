@@ -198,6 +198,8 @@ namespace VintageGarmentDescriber
 
             String res = String.Join("\t", 
                 GetShortTitle(), 
+                "", // image
+                "", // image link
                 GetFullTitle(), 
                 GetDesc(),
                 GetCondition(),
@@ -206,8 +208,7 @@ namespace VintageGarmentDescriber
                 GetMeasurements(),
                 GetTags(),
                 Material,
-                "", // price
-                ""  // photo link
+                "" // price
             );
 
             return res;
