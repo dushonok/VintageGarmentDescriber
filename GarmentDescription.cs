@@ -125,6 +125,7 @@ namespace VintageGarmentDescriber
         String UsageType { get { return GetField(0); } } // vintage / second hand
         String Type { get { return GetField(1); } } // dress /pants / etc
         String Year { get { return GetField(2); } } // 1960s / 1970s / etc
+        String Label { get { return ""; } } // label , brand
         String Material 
         { 
             get 
@@ -214,6 +215,32 @@ namespace VintageGarmentDescriber
             return res;
         }
 
+        public String ConvertToLightSpeedText()
+        {
+             if (String.IsNullOrEmpty(Type))
+                return "";
+
+             String res = String.Join("\n",
+                 GetFullTitle(),
+                 "",
+                 GetDesc(),
+                 "",
+                 GetCondition(),
+                 "",
+                 GetIncludedAccessories(),
+                 "",
+                 GetModelSize(),
+                 "",
+                 GetMeasurements(),
+                 "",
+                 "Etsy tags: " + GetTags(),
+                 "",
+                 "Etsy material: " + Material
+             );
+
+             return res;
+        }
+
 
         public void Add(Int32 newIdx, String txt)
         {
@@ -255,10 +282,12 @@ namespace VintageGarmentDescriber
         {
             String newUsageType = WordFirstLettersToUpper(UsageType);
             String newType = AllToLower(Type);
+            String label = Label;
             String madeIn = String.IsNullOrEmpty(Year) ? "" : "made in " + Year;
             String desc = String.Join(" ", newUsageType, newType, madeIn);
             desc = String.Join("\n", 
-                    desc, 
+                    desc,
+                    String.IsNullOrEmpty(label) ? "" : "Label " + label,
                     String.IsNullOrEmpty(SkirtLenght) ? "" : VeryFirstLetterToUpper(SkirtLenght) + " skirt",
                     VeryFirstLetterToUpper(SleevePlural.ToLower()), 
                     VeryFirstLetterToUpper(Material.ToLower()),
@@ -291,7 +320,7 @@ namespace VintageGarmentDescriber
         String GetTags()
         {
             String tags = String.Join(tagSeparator, UsageType, Type, Year, Material, SleevePlural, SkirtLenght,
-                MadeInCountry);
+                MadeInCountry, Label);
             if (synonims.ContainsKey(Type.ToLower()))
                 tags = String.Join(tagSeparator, tags, synonims[Type.ToLower()]);
             if (synonims.ContainsKey(SkirtLenght.ToLower()))
