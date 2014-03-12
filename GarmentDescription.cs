@@ -238,7 +238,7 @@ namespace VintageGarmentDescriber
                  "Etsy material: " + Material
              );
 
-             return res;
+             return RemoveTripledEmptyLines(res);
         }
 
 
@@ -270,12 +270,12 @@ namespace VintageGarmentDescriber
                     WordFirstLettersToUpper(Type)
                   );
             title.Replace('\'', '\x0');
-            return RemoveDuplicatedThings(title);
+            return RemoveDuplicatedEmptyThings(title);
         }
 
         String GetShortTitle()
         {
-            return RemoveDuplicatedThings(String.Join(" ", Year, Sleeve, Type));
+            return RemoveDuplicatedEmptyThings(String.Join(" ", Year, Sleeve, Type));
         }
 
         String GetDesc()
@@ -294,7 +294,7 @@ namespace VintageGarmentDescriber
                     " ",
                     MadeInCountry
                 );
-            return RemoveDuplicatedThings(desc);
+            return RemoveDuplicatedEmptyThings(desc);
         }
 
         String GetCondition()
@@ -329,12 +329,12 @@ namespace VintageGarmentDescriber
                 tags = String.Join(tagSeparator, tags, synonims[Sleeve.ToLower()]);
             if (synonims.ContainsKey(MadeIn.ToLower()))
                 tags = String.Join(tagSeparator, tags, synonims[MadeIn.ToLower()]);
-            return RemoveDuplicatedThings(tags);
+            return RemoveDuplicatedEmptyThings(tags);
         }
 
         String GetModelSize()
         {
-            return " ";
+            return "";
         }
 
         String PutInQuotes(String txt)
@@ -374,7 +374,7 @@ namespace VintageGarmentDescriber
             return str.Substring(0, 1).ToUpper() + str.Substring(1, str.Length - 1);
         }
 
-        String RemoveDuplicatedThings(String input)
+        String RemoveDuplicatedEmptyThings(String input)
         {
             String pattern = "[^\\S\\n]+";
             String replacement = " ";
@@ -392,6 +392,21 @@ namespace VintageGarmentDescriber
             result = rgx.Replace(result, replacement);
 
             return result.Trim();
+        }
+
+        String RemoveTripledEmptyLines(String input)
+        {
+            String pattern = "(\\n\\s?){3,}";
+            String replacement = "\n";
+            Regex rgx = new Regex(pattern);
+            String result = rgx.Replace(input, replacement);
+
+            if (Regex.IsMatch(result, pattern))
+            {
+                result = RemoveTripledEmptyLines(result);
+            }
+
+            return result;
         }
 
         List<String> descriptions;
