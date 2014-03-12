@@ -49,6 +49,9 @@ namespace VintageGarmentDescriber
             InitializeComponent();
             DataContext = new MainViewModel();
 
+            tempInputBindings = new InputBinding[100];
+            InputBindings.CopyTo(tempInputBindings, 0);
+
 
             garments = new List<GarmentDescription>();
 
@@ -59,6 +62,7 @@ namespace VintageGarmentDescriber
             garmentUIGroups.Add(this.SleevesControls);
             garmentUIGroups.Add(this.SkirtLenghtControls);
             garmentUIGroups.Add(this.MadeInControls);
+            garmentUIGroups.Add(this.LabelControls);
 
             
             loadImgCmd = (LoadImgCommand)((MainViewModel)DataContext).LoadImgCommand;
@@ -77,6 +81,7 @@ namespace VintageGarmentDescriber
 
 #region properties
         String outputFileName;
+        InputBinding[] tempInputBindings;
         
         
         Int32 imageIdx;
@@ -228,7 +233,7 @@ namespace VintageGarmentDescriber
         {
             String type = text;
             int lastIdxOfSpace = type.LastIndexOf(' ');
-            AddedProp.Text = text.Remove(lastIdxOfSpace, type.Length - lastIdxOfSpace);
+            AddedProp.Text = lastIdxOfSpace < 0 ? text : text.Remove(lastIdxOfSpace, type.Length - lastIdxOfSpace);
             this.Focus();
             
             if (IsNextImage)
@@ -291,7 +296,42 @@ namespace VintageGarmentDescriber
             ResultStr.Text = ResultStr.Text.Trim();
         }
 
-        
+        private void LabelControls_IsVisibleChanged_1(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (LabelControls.IsVisible)
+            {
+                this.InputBindings.Clear();
+            }
+            else {
+                RestoreInputBindings();
+            }
+        }
+
+        private void RestoreInputBindings()
+        {
+            if (this.InputBindings.Count > 0)
+            {
+                return;
+            }
+            for (int i = 0; i < tempInputBindings.Length; ++i)
+            {
+                if (tempInputBindings[i] != null)
+                {
+                    this.InputBindings.Add(tempInputBindings[i]);
+                }
+            }
+        }
+
+        private void AddedProp_KeyUp_1(object sender, KeyEventArgs e)
+        {
+            if (!LabelControls.IsVisible)
+            {
+                return;
+            }
+
+            this.AddNewDescr(((TextBox)sender).Text);
+        }
+
         
     }
 

@@ -15,11 +15,12 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel Name="sp" Grid.Row="0" Margin="0,189,0,152" VerticalAlignment="Stretch" Background="#FFDEF9E9" />
+        <StackPanel Name="sp" Grid.Row="0" Margin="0,189,0,237" VerticalAlignment="Stretch" Background="#FFDEF9E9" />
         <Label Name="AddedPropLabel" Content="something" HorizontalAlignment="Left" Margin="62,63,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="37" Width="107" FontSize="20"/>
         <Label x:Name="AddedPropNumber" Content="1/4" HorizontalAlignment="Left" Margin="0,63,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="37" Width="57" FontSize="20"/>
 
-        <TextBox Name="AddedProp" Text="Dress" HorizontalAlignment="Stretch" Margin="174,65,142,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Height="36" Background="White" Foreground="#FF1E8001"/>
+        <TextBox Name="AddedProp" Text="Dress" HorizontalAlignment="Stretch" Margin="174,65,142,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Height="36" Background="White" Foreground="#FF1E8001"
+                 KeyUp="AddedProp_KeyUp_1"/>
         <Button Content="Previous &lt;-" HorizontalAlignment="Right" Margin="0,72,69,0" VerticalAlignment="Top" Width="70" Height="26" 
                 Command="{Binding PrevGarmentTypeCommand}" CommandParameter="{Binding ElementName=MainWindowForm}"/>
         <Button Content="Next ->" HorizontalAlignment="Right" Margin="0,72,0,0" VerticalAlignment="Top" Width="69" Height="26"
@@ -57,7 +58,8 @@
             
 
         </Grid>
-        <Grid Name="YearControls" Height="84" Margin="0,0,10,41" VerticalAlignment="Bottom" Visibility="Collapsed">
+        <Grid Name="YearControls" Height="84" Margin="0,0,10,41" VerticalAlignment="Bottom" Visibility="Collapsed"
+              IsVisibleChanged="LabelControls_IsVisibleChanged_1">
             <Button Content="1990s f" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
             			Margin="4,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="1980s j" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
@@ -79,7 +81,8 @@
             <Button Content="" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="106"  
             			Margin="453,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
         </Grid>
-        <Grid Name="MaterialControls" Height="84" VerticalAlignment="Bottom" Margin="0,0,0,41" Visibility="Collapsed">
+        <Grid Name="MaterialControls" Height="84" VerticalAlignment="Bottom" Margin="0,0,0,41" Visibility="Collapsed"
+              IsVisibleChanged="LabelControls_IsVisibleChanged_1">
             <Button Content="N/A f" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
             		Margin="5,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Polyester j" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
@@ -102,7 +105,8 @@
             		Margin="454,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             
         </Grid>
-        <Grid Name="SleevesControls" Height="84" VerticalAlignment="Bottom" Margin="0,0,0,41" Visibility="Collapsed">
+        <Grid Name="SleevesControls" Height="84" VerticalAlignment="Bottom" Margin="0,0,0,41" Visibility="Collapsed"
+              IsVisibleChanged="LabelControls_IsVisibleChanged_1">
             <Button Content="N/A f" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
             		Margin="5,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Short sleeve j" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
@@ -126,7 +130,8 @@
 
         </Grid>
 
-        <Grid Name="SkirtLenghtControls" Height="84" VerticalAlignment="Bottom" Margin="0,0,0,41" Visibility="Collapsed">
+        <Grid Name="SkirtLenghtControls" Height="84" VerticalAlignment="Bottom" Margin="0,0,0,41" Visibility="Collapsed"
+              IsVisibleChanged="LabelControls_IsVisibleChanged_1">
             <Button Content="N/A f" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
             		Margin="5,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Knee j" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
@@ -150,7 +155,8 @@
 
         </Grid>
 
-        <Grid Name="MadeInControls" Height="84" VerticalAlignment="Bottom" Margin="0,0,0,41" Visibility="Collapsed">
+        <Grid Name="MadeInControls" Height="84" VerticalAlignment="Bottom" Margin="0,0,0,41" Visibility="Collapsed"
+              IsVisibleChanged="LabelControls_IsVisibleChanged_1">
             <Button Content="N/A f" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
             		Margin="5,6,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
             <Button Content="Canada j" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="115" 
@@ -173,12 +179,17 @@
             		Margin="454,41,0,0" Command="{Binding GarmentTypeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
 
         </Grid>
+
+        <Grid Name="LabelControls" Height="84" VerticalAlignment="Bottom" Margin="0,0,0,41" Visibility="Collapsed"
+              IsVisibleChanged="LabelControls_IsVisibleChanged_1">
+        </Grid>
+        
         <Button Content="Prev Ctrl+&lt;" HorizontalAlignment="Right" Margin="0,38,69,0" VerticalAlignment="Top" Width="70" Height="26" 
         	Command="{Binding PrevImageCommand}" CommandParameter="{Binding ElementName=MainWindowForm}"/>
         <Button Content="Next Ctrl+&gt;" HorizontalAlignment="Right" Margin="0,37,0,0" VerticalAlignment="Top" Width="69" Height="26"
         	Command="{Binding NextImageCommand}"  CommandParameter="{Binding ElementName=MainWindowForm}" Panel.ZIndex="1"/>
         <TextBox Name="ResultStr" Text="bla" HorizontalAlignment="Stretch" Margin="0,0,0,5" TextWrapping="Wrap" Visibility="Visible" 
-                   VerticalAlignment="Bottom" Height="142" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                   VerticalAlignment="Bottom" Height="227" ScrollViewer.VerticalScrollBarVisibility="Auto"
                  />
 
     </Grid>

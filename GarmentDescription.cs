@@ -125,7 +125,7 @@ namespace VintageGarmentDescriber
         String UsageType { get { return GetField(0); } } // vintage / second hand
         String Type { get { return GetField(1); } } // dress /pants / etc
         String Year { get { return GetField(2); } } // 1960s / 1970s / etc
-        String Label { get { return ""; } } // label , brand
+        String Label { get { return VeryFirstLetterToUpper(GetField(7)); } } // label , brand
         String Material 
         { 
             get 
@@ -265,6 +265,7 @@ namespace VintageGarmentDescriber
             String title = String.Join(" ", 
                     WordFirstLettersToUpper(UsageType), 
                     WordFirstLettersToUpper(Year),
+                    WordFirstLettersToUpper(Label),
                     WordFirstLettersToUpper(Sleeve),
                     WordFirstLettersToUpper(SkirtLenght), 
                     WordFirstLettersToUpper(Type)

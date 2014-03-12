@@ -36,6 +36,10 @@ namespace VintageGarmentDescriber
                 {
                     btn = (Button)obj;
                     int pos = btn.Content.ToString().LastIndexOf(' ');
+                    if (pos < 0)
+                    {
+                        return null;
+                    }
                     String str02 = btn.Content.ToString().Substring(pos, 2);
                     if (str02 != null && str02.Trim().Equals(namePartStr.Trim(), StringComparison.InvariantCultureIgnoreCase))
                         return btn;

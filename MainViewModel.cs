@@ -69,7 +69,21 @@ namespace VintageGarmentDescriber
         {
             get;
             internal set;
-        }        
+        }
+
+        public void SetCanExecuteAll(bool isCanExecute, object parameter)
+        {
+            object par = isCanExecute ? parameter : null;
+
+            PrevGarmentTypeCommand.CanExecute(par);
+            NextGarmentTypeCommand.CanExecute(par);
+            PrevImageCommand.CanExecute(par);
+            NextImageCommand.CanExecute(par);
+            OpenFolderCommand.CanExecute(par);
+            LoadImgCommand.CanExecute(par);
+            GarmentTypeCommand.CanExecute(par);
+            ChooseGarmentTypeCommand.CanExecute(par);
+        }
         
     }
 }

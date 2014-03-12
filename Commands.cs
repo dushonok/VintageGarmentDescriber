@@ -246,7 +246,11 @@ namespace VintageGarmentDescriber
         
         virtual public bool CanExecute(object parameter)
         {
-            btn = ((Button)parameter);
+            btn = null;
+            if (parameter != null && parameter is Button)
+            {
+                btn = ((Button)parameter);
+            }
             if (wnd == null)
                 wnd = ((MainWindow)Utils.GetTopLevelControl(btn));
             return btn != null;
@@ -257,7 +261,6 @@ namespace VintageGarmentDescriber
             btn = ((Button)parameter);
             if (wnd == null)
                 wnd = ((MainWindow)Utils.GetTopLevelControl(btn));
-
         }
 
         
@@ -308,8 +311,11 @@ namespace VintageGarmentDescriber
             String txt = ((Key)list[1]).ToString();
             Grid group = wnd.GetVisibleGarmentUIGroup();
             Button btn = Utils.GetButtonByNamePart(group, txt);
-            
-            garmentTypeCmd.Execute(btn);
+
+            if (btn != null)
+            {
+                garmentTypeCmd.Execute(btn);
+            }
 
         }
     }
