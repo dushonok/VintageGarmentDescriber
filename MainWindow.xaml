@@ -4,7 +4,7 @@
         xmlns:l="clr-namespace:VintageGarmentDescriber"
         Name="MainWindowForm"
         Title="Garment Describer" Height="1050.94" Width="561.12"
-        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+        DataContext="{Binding RelativeSource={RelativeSource Self}}" Icon="penguin.ico">
     <!-- Resources -->
     <Window.Resources>
         <l:PassThroughConverter x:Key="PassThroughConverter"/>
