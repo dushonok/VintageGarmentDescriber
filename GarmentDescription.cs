@@ -191,23 +191,23 @@ namespace VintageGarmentDescriber
             }
         }
 
-        public String ConvertToFileLine()
+        public String ConvertToQuotedFileLine()
         {
             if (String.IsNullOrEmpty(Type))
                 return "";
 
-            String res = String.Join("\t", 
-                GetShortTitle(), 
+            String res = String.Join("\t",
+                PutInQuotes(GetShortTitle()), 
                 "", // image
                 "", // image link
-                GetFullTitle(), 
-                GetDesc(),
-                GetCondition(),
-                GetIncludedAccessories(),
-                GetModelSize(),
-                GetMeasurements(),
-                GetTags(),
-                Material,
+                PutInQuotes(GetFullTitle()),
+                PutInQuotes(GetDesc()),
+                PutInQuotes(GetCondition()),
+                PutInQuotes(GetIncludedAccessories()),
+                PutInQuotes(GetModelSize()),
+                PutInQuotes(GetMeasurements()),
+                PutInQuotes(GetTags()),
+                PutInQuotes(Material),
                 "" // price
             );
 
@@ -243,12 +243,12 @@ namespace VintageGarmentDescriber
                     WordFirstLettersToUpper(Type)
                   );
             title.Replace('\'', '\x0');
-            return PutInQuotes(RemoveDuplicatedThings(title));
+            return RemoveDuplicatedThings(title);
         }
 
         String GetShortTitle()
         {
-            return PutInQuotes(RemoveDuplicatedThings(String.Join(" ", Year, Sleeve, Type)));
+            return RemoveDuplicatedThings(String.Join(" ", Year, Sleeve, Type));
         }
 
         String GetDesc()
@@ -265,28 +265,27 @@ namespace VintageGarmentDescriber
                     " ",
                     MadeInCountry
                 );
-            return PutInQuotes(RemoveDuplicatedThings(desc));
+            return RemoveDuplicatedThings(desc);
         }
 
         String GetCondition()
         {
-            return PutInQuotes("Great vintage condition");
+            return "Great vintage condition";
         }
 
         String GetIncludedAccessories()
         {
-            return PutInQuotes("None of the accessories or other items included. Available for purchase in the physical store");
+            return "None of the accessories or other items included. Available for purchase in the physical store";
         }
 
         String GetMeasurements()
         {
             if (!measurements.ContainsKey(Type.ToLower()))
                 return "";
-            return PutInQuotes(String.Join("\n", 
+            return String.Join("\n", 
                     measurements[Type.ToLower()], 
                     " " , 
-                    "Wondering how we measure our items? See in our Shop Policies!")
-                 );
+                    "Wondering how we measure our items? See in our Shop Policies!");
         }
 
         String GetTags()
@@ -301,12 +300,12 @@ namespace VintageGarmentDescriber
                 tags = String.Join(tagSeparator, tags, synonims[Sleeve.ToLower()]);
             if (synonims.ContainsKey(MadeIn.ToLower()))
                 tags = String.Join(tagSeparator, tags, synonims[MadeIn.ToLower()]);
-            return PutInQuotes(RemoveDuplicatedThings(tags));
+            return RemoveDuplicatedThings(tags);
         }
 
         String GetModelSize()
         {
-            return PutInQuotes(" ");
+            return " ";
         }
 
         String PutInQuotes(String txt)

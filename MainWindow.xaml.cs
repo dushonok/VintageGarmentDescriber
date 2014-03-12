@@ -277,7 +277,7 @@ namespace VintageGarmentDescriber
             // Body
             for (int i = 0; i < garments.Count; ++i )
             {
-                String newLine = garments[i].ConvertToFileLine();
+                String newLine = garments[i].ConvertToQuotedFileLine();
                 if (String.IsNullOrEmpty(newLine))
                     continue;
 
